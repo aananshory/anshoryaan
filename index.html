@@ -6,50 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Aritmatika</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background: #f8f9fa;
             font-family: Arial, sans-serif;
+            padding: 40px 15px;
         }
 
-        .container {
-            max-width: 850px;
-            margin-top: 80px;
-            margin-bottom: 50px;
-        }
-
-        .card {
-            border: none;
+        .calculator {
+            max-width: 800px;
+            margin: 35px auto;
+            background: white;
             border-radius: 12px;
-            overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
 
         .header {
-            background-color: #0d6efd;
+            background: #0d6efd;
             color: white;
             text-align: center;
             padding: 20px;
         }
 
         .header h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: 40px;
         }
 
-        .header h4 {
-            color: #5c9bd1;
-            background-color: white;
-            display: inline-block;
-            padding: 3px 5px;
-            font-size: 23px;
+        .header p {
+            font-size: 22px;
+            margin: 0;
         }
 
-        .card-body {
-            padding: 40px;
+        .content {
+            padding: 35px 40px;
         }
 
         .form-label {
@@ -58,53 +50,58 @@
         }
 
         .form-control, .form-select {
-            height: 60px;
-            font-size: 22px;
+            font-size: 21px;
+            padding: 12px 18px;
             border-radius: 10px;
-            margin-bottom: 25px;
         }
 
         .btn-hitung {
-            height: 60px;
-            font-size: 24px;
-            width: 100%;
-            margin-top: 0;
+            font-size: 22px;
+            padding: 12px;
+            margin-top: 25px;
         }
 
         .hasil {
-            background-color: #212529;
+            background: #212529;
             color: white;
             text-align: center;
+            padding: 28px;
+            margin-top: 35px;
             border-radius: 10px;
-            padding: 25px;
-            margin-top: 40px;
-        }
-
-        .hasil h4 {
-            font-size: 22px;
         }
 
         .hasil h1 {
-            font-size: 85px;
+            font-size: 65px;
             font-weight: bold;
             margin: 10px 0;
+            overflow-wrap: anywhere;
         }
 
-        @media (max-width: 576px) {
-            .container {
-                margin-top: 30px;
-            }
+        .hasil h4 {
+            font-size: 20px;
+        }
 
-            .card-body {
-                padding: 20px;
+        .jenis-operator {
+            color: #0dcaf0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 576px) {
+            .content {
+                padding: 25px 20px;
             }
 
             .header h1 {
-                font-size: 30px;
+                font-size: 29px;
             }
 
-            .header h4 {
-                font-size: 17px;
+            .header p {
+                font-size: 16px;
+            }
+
+            .form-label {
+                font-size: 19px;
             }
         }
     </style>
@@ -113,107 +110,223 @@
 <body>
 
 <div class="container">
-    <div class="card">
+    <div class="calculator">
 
-        <!-- Header -->
+        <!-- HEADER -->
         <div class="header">
             <h1>Kalkulator Aritmatika</h1>
-            <h4>Aan Abdurrahman Anshory - NIM. 262302007</h4>
+            <p>Aan Abdurrahman Anshory - NIM. 2623020007</p>
         </div>
 
-        <!-- Form Kalkulator -->
-        <div class="card-body">
+        <div class="content">
 
-            <label class="form-label">Angka Pertama</label>
-            <input type="number" id="angka1" class="form-control"
-                   placeholder="Masukkan angka pertama">
+            <!-- INPUT ANGKA PERTAMA -->
+            <div class="mb-4">
+                <label class="form-label">Angka Pertama</label>
+                <input type="number" id="angka1"
+                       class="form-control"
+                       placeholder="Masukkan angka pertama"
+                       step="any">
+            </div>
 
-            <label class="form-label">Angka Kedua</label>
-            <input type="number" id="angka2" class="form-control"
-                   placeholder="Masukkan angka kedua">
+            <!-- INPUT ANGKA KEDUA -->
+            <div class="mb-4">
+                <label class="form-label">Angka Kedua</label>
+                <input type="number" id="angka2"
+                       class="form-control"
+                       placeholder="Masukkan angka kedua"
+                       step="any">
+            </div>
 
-            <label class="form-label">Pilih Operator</label>
-            <select id="operator" class="form-select">
-                <option value="+">Penjumlahan (+)</option>
-                <option value="-">Pengurangan (-)</option>
-                <option value="*">Perkalian (*)</option>
-                <option value="/">Pembagian (/)</option>
-                <option value="**">Pangkat (**)</option>
-                <option value="%">Modulus (%)</option>
-            </select>
+            <!-- PILIH OPERATOR -->
+            <div class="mb-3">
+                <label class="form-label">Pilih Operator</label>
 
-            <!-- Tombol Hitung -->
-            <button onclick="hitung()" class="btn btn-primary btn-hitung">
+                <select id="operator" class="form-select">
+
+                    <optgroup label="Operator Aritmatika">
+                        <option value="**">Pangkat (**)</option>
+                        <option value="+">Penjumlahan (+)</option>
+                        <option value="-">Pengurangan (-)</option>
+                        <option value="*">Perkalian (*)</option>
+                        <option value="/">Pembagian (/)</option>
+                        <option value="%">Modulus (%)</option>
+                    </optgroup>
+
+                    <optgroup label="Operator Perbandingan">
+                        <option value="==">Sama Dengan (==)</option>
+                        <option value="!=">Tidak Sama Dengan (!=)</option>
+                        <option value=">">Lebih Besar (>)</option>
+                        <option value="<">Lebih Kecil (<)</option>
+                        <option value=">=">Lebih Besar atau Sama Dengan (>=)</option>
+                        <option value="<=">Lebih Kecil atau Sama Dengan (<=)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+
+            <!-- TOMBOL HITUNG -->
+            <button onclick="hitung()"
+                    class="btn btn-primary w-100 btn-hitung">
                 Hitung
             </button>
 
-            <!-- Hasil -->
+            <!-- TOMBOL RESET -->
+            <button onclick="resetKalkulator()"
+                    class="btn btn-secondary w-100 mt-2">
+                Reset
+            </button>
+
+            <!-- HASIL PERHITUNGAN -->
             <div class="hasil">
                 <h4>HASIL PERHITUNGAN</h4>
+
+                <div class="jenis-operator" id="jenisOperator">
+                    Menunggu Perhitungan
+                </div>
+
                 <h1 id="hasil">0</h1>
+
+                <p id="keterangan">
+                    Hasil akan ditampilkan di sini
+                </p>
             </div>
 
         </div>
     </div>
 </div>
 
-<!-- JavaScript -->
+<!-- JAVASCRIPT -->
 <script>
-    function hitung() {
 
-        let angka1 = parseFloat(document.getElementById("angka1").value);
-        let angka2 = parseFloat(document.getElementById("angka2").value);
-        let operator = document.getElementById("operator").value;
+function hitung() {
 
-        let hasil;
+    let input1 = document.getElementById("angka1").value;
+    let input2 = document.getElementById("angka2").value;
 
-        if (isNaN(angka1) || isNaN(angka2)) {
-            alert("Silakan masukkan kedua angka terlebih dahulu!");
-            return;
-        }
+    let operator = document.getElementById("operator").value;
 
-        switch (operator) {
-
-            case "+":
-                hasil = angka1 + angka2;
-                break;
-
-            case "-":
-                hasil = angka1 - angka2;
-                break;
-
-            case "*":
-                hasil = angka1 * angka2;
-                break;
-
-            case "/":
-                if (angka2 === 0) {
-                    alert("Angka tidak bisa dibagi dengan nol!");
-                    return;
-                }
-                hasil = angka1 / angka2;
-                break;
-
-            case "**":
-                hasil = angka1 ** angka2;
-                break;
-
-            case "%":
-                if (angka2 === 0) {
-                    alert("Modulus dengan nol tidak diperbolehkan!");
-                    return;
-                }
-                hasil = angka1 % angka2;
-                break;
-
-            default:
-                hasil = 0;
-        }
-
-        document.getElementById("hasil").innerText = hasil;
+    if (input1 === "" || input2 === "") {
+        alert("Masukkan kedua angka terlebih dahulu!");
+        return;
     }
+
+    let angka1 = Number(input1);
+    let angka2 = Number(input2);
+
+    let hasil;
+    let jenis;
+
+    switch (operator) {
+
+        // OPERATOR ARITMATIKA
+
+        case "+":
+            hasil = angka1 + angka2;
+            jenis = "Operator Aritmatika - Penjumlahan";
+            break;
+
+        case "-":
+            hasil = angka1 - angka2;
+            jenis = "Operator Aritmatika - Pengurangan";
+            break;
+
+        case "*":
+            hasil = angka1 * angka2;
+            jenis = "Operator Aritmatika - Perkalian";
+            break;
+
+        case "/":
+            if (angka2 === 0) {
+                alert("Tidak bisa membagi dengan nol!");
+                return;
+            }
+            hasil = angka1 / angka2;
+            jenis = "Operator Aritmatika - Pembagian";
+            break;
+
+        case "%":
+            if (angka2 === 0) {
+                alert("Modulus dengan nol tidak diperbolehkan!");
+                return;
+            }
+            hasil = angka1 % angka2;
+            jenis = "Operator Aritmatika - Modulus";
+            break;
+
+        case "**":
+            hasil = angka1 ** angka2;
+            jenis = "Operator Aritmatika - Pangkat";
+            break;
+
+        // OPERATOR PERBANDINGAN
+
+        case "==":
+            hasil = angka1 == angka2;
+            jenis = "Operator Perbandingan - Sama Dengan";
+            break;
+
+        case "!=":
+            hasil = angka1 != angka2;
+            jenis = "Operator Perbandingan - Tidak Sama Dengan";
+            break;
+
+        case ">":
+            hasil = angka1 > angka2;
+            jenis = "Operator Perbandingan - Lebih Besar";
+            break;
+
+        case "<":
+            hasil = angka1 < angka2;
+            jenis = "Operator Perbandingan - Lebih Kecil";
+            break;
+
+        case ">=":
+            hasil = angka1 >= angka2;
+            jenis = "Operator Perbandingan - Lebih Besar atau Sama Dengan";
+            break;
+
+        case "<=":
+            hasil = angka1 <= angka2;
+            jenis = "Operator Perbandingan - Lebih Kecil atau Sama Dengan";
+            break;
+
+    }
+
+    document.getElementById("hasil").innerText = hasil;
+
+    document.getElementById("jenisOperator").innerText = jenis;
+
+    if (typeof hasil === "boolean") {
+        document.getElementById("keterangan").innerText =
+            hasil ? "BENAR (TRUE)" : "SALAH (FALSE)";
+    } else {
+        document.getElementById("keterangan").innerText =
+            angka1 + " " + operator + " " + angka2;
+    }
+
+}
+
+// FUNGSI RESET
+
+function resetKalkulator() {
+
+    document.getElementById("angka1").value = "";
+    document.getElementById("angka2").value = "";
+
+    document.getElementById("operator").value = "**";
+
+    document.getElementById("hasil").innerText = "0";
+
+    document.getElementById("jenisOperator").innerText =
+        "Menunggu Perhitungan";
+
+    document.getElementById("keterangan").innerText =
+        "Hasil akan ditampilkan di sini";
+}
+
 </script>
 
 </body>
-  </html>
-              
+                                                           </html>
+    
